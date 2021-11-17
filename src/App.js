@@ -2,6 +2,8 @@ import React from "react";
 //for "react-router-dom"V6, change Redirect to Navigate
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
+import Statis from "./pages/Statistics";
+import Todo from "./pages/Todo";
 
 function App() {
   return (
@@ -9,7 +11,6 @@ function App() {
       <div className="APP"></div>
       <Route exact path="/" render={() => <Redirect to="/home" />}></Route>
       <Route path="/home" component={Home}></Route>
-      {/* <Route path="/todo" component={ToDo}></Route> */}
     </Router>
   );
 }

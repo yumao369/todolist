@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { Route } from "react-router";
+import { Route, useHistory, useLocation } from "react-router";
 
 import Menu from "./Menu";
+import Todo from "../Todo";
+import Statis from "../Statistics";
 
 import styles from "./index.module.css";
 import logo from "../../assets/png/logo.png";
@@ -10,18 +12,21 @@ import clock from "../../assets/svg/icon-clock.svg";
 import statistics from "../../assets/svg/icon-statistics.svg";
 
 const menuData = [
-  { svgId: "#icon-clock", menuName: "待办事项" },
-  { svgId: "#icon-statistics", menuName: "统计" },
+  { svgId: "#icon-clock", menuName: "待办事项", path: "/home" },
+  { svgId: "#icon-statistics", menuName: "统计", path: "/home/statis" },
 ];
 
 export default function Home() {
-  const [menuSelected, setMenuSelected] = useState([1, 0]);
+  let history = useHistory();
+  let location = useLocation();
 
-  const onselected = (menuIndex) => {
-    setMenuSelected(
-      menuSelected.map((item, index) => (index === menuIndex ? 1 : 0))
-    );
-    console.log(menuSelected);
+  const [menuSelected, setMenuSelected] = useState(location.pathname);
+
+  const onClick = (path) => {
+    setMenuSelected(path);
+    //hook中不能这样使用this,js的特性决定
+    // this.props.history.push(path);
+    history.push(path);
   };
 
   const renderMenu = () => {
@@ -30,9 +35,10 @@ export default function Home() {
         <Menu
           key={item.svgId}
           id={index}
+          path={item.path}
           svgId={item.svgId}
-          selected={menuSelected[index]}
-          onClick={onselected}
+          selected={menuSelected === item.path}
+          onClick={onClick}
         >
           {item.menuName}
         </Menu>
@@ -59,9 +65,14 @@ export default function Home() {
         <>{renderMenu()}</>
       </div>
       {/* 右边主题内容 */}
-      {/* <div className={styles.content}>
-        <Route path="/home/todo" component={ToDo}></Route>
-      </div> */}
+      <div className={styles.content}>
+        {/* 此处不能再包裹一层router，否则会出现url改变，页面不改变的情况 */}
+        {/* https://segmentfault.com/q/1010000009790180 */}
+        {/* <Router history={history}> */}
+        <Route exact path="/home" component={Todo}></Route>
+        <Route path="/home/statis" component={Statis}></Route>
+        {/* </Router> */}
+      </div>
     </div>
   );
 }

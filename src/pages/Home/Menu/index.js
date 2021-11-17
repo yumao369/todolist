@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 import styles from "./index.module.css";
 
-export default function Menu({ id, svgId, children, selected, onClick }) {
+export default function Menu({ id, svgId, path, children, selected, onClick }) {
   return (
     <div
       onClick={() => {
-        onClick(id);
+        onClick(path);
       }}
       className={[styles.menu, selected ? styles.menuSelected : ""].join(" ")}
     >
-      {/* <img className={styles.img} src={imgURL} alt="" /> */}
       <svg className={styles.svg}>
         <use xlinkHref={svgId} />
       </svg>
@@ -17,3 +18,12 @@ export default function Menu({ id, svgId, children, selected, onClick }) {
     </div>
   );
 }
+
+Menu.propTypes = {
+  id: PropTypes.number,
+  svgId: PropTypes.string,
+  path: PropTypes.string,
+  children: PropTypes.string,
+  selected: PropTypes.bool,
+  onclick: PropTypes.func,
+};

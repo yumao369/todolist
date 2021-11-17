@@ -50,3 +50,8 @@
   margin: 0 0 0 0;
   font-weight: 600;
 }
+
+.content {
+  margin-left: 248px;
+  background-color: #ecf0f8;
+}
