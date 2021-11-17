@@ -1,5 +1,42 @@
-.a {
-  fill: yellow;
-  width: 20px;
-  height: 20px;
+:root {
+  --BG: #fff;
+  --Gray-1: rgba(15, 23, 42, 0.02);
+  --Gray-2: rgba(15, 23, 42, 0.04);
+  --Gray-3: rgba(15, 23, 42, 0.06);
+  --Gray-4: rgba(15, 23, 42, 0.15);
+  --Gray-5: rgba(15, 23, 42, 0.25);
+  --Gray-6: rgba(15, 23, 42, 0.45);
+  --Gray-7: rgba(15, 23, 42, 0.65);
+  --Gray-8: rgba(15, 23, 42, 0.85);
+  --Gray-9: rgba(15, 23, 42, 0.1);
+  --Theme-1: #fff0e5;
+  --Theme-2: #ffe1cc;
+  --Theme-3: #ffd1b3;
+  --Theme-4: #ffc299;
+  --Theme-5: #ffb380;
+  --Theme-6: #ffa366;
+  --Theme-7: #ff944d;
+  --Theme-8: #ff8533;
+  --Theme-9: #ff761a;
+  --Theme-10: #ff6700;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: PingFang SC, Microsoft Yahei, sans-serif;
+}
+
+html,
+body {
+  color: var(--Gray-9);
+  background-color: var(--BG);
+}
+
+html,
+body,
+#root,
+.App {
+  height: 100%;
 }

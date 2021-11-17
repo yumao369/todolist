@@ -1,0 +1,32 @@
+.menu {
+  display: flex;
+  align-items: center;
+  width: 184px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.menuSelected {
+  background-color: #ffc266 !important;
+}
+
+.menu:hover {
+  background-color: #ecf0f8;
+}
+
+.svg {
+  fill: var(--Gray-7);
+  height: 20px;
+  width: 20px;
+  margin: 0 24px 0 8px;
+}
+
+.content {
+  color: var(--Gray-7);
+  font-size: 12px;
+  line-height: 24px;
+  font-weight: 600;
+}
