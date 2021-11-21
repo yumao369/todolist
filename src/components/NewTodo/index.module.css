@@ -1,0 +1,177 @@
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  background-color: var(--Gray-6);
+}
+
+.addNewWin {
+  position: fixed;
+  top: 50px;
+  left: 310px;
+  height: 256px;
+  width: 832px;
+  z-index: 100;
+  background-color: var(--BG);
+  padding: 32px;
+  border-radius: 16px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 32px;
+}
+
+.btn {
+  border: 0;
+  background: none;
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel {
+  color: var(--Gray-6);
+}
+
+.save {
+  color: var(--Theme-6);
+  margin-left: 32px;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  min-height: 64px;
+  margin: 32px 0 32px 0;
+  border: 0;
+  color: var(--Gray-8);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  outline: none;
+  resize: none;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+}
+
+.timing {
+  display: flex;
+  align-items: center;
+  width: 112px;
+  height: 32px;
+  margin-right: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.timing:hover {
+  background-color: var(--Theme-3);
+}
+
+.timingClicked {
+  background-color: var(--Theme-3);
+  border: 2px solid var(--Theme-6);
+}
+
+.svgTiming {
+  fill: var(--Theme-6);
+  width: 24px;
+  height: 24px;
+  margin: 0 10px 0 10px;
+}
+
+.setTiming {
+  display: flex;
+  flex-direction: row;
+}
+
+.time {
+  width: 40px;
+  border: 1px solid var(--Gray-6);
+  border-radius: 5px;
+}
+
+.setClass {
+  border: 1px solid;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  height: 32px;
+  margin-right: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.listClass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  margin: 0 4px;
+  border: 2px solid var(--class-orange-sec);
+  border-radius: 100%;
+}
+
+.baseListClass {
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  background: var(--class-orange);
+}
+
+.orangeBorder {
+  border: 2px solid var(--class-orange-sec);
+}
+.orangeClass {
+  background: var(--class-orange);
+}
+
+.redBorder {
+  border: 2px solid var(--class-red-sec);
+}
+.redClass {
+  background: var(--class-red);
+}
+
+.blueBorder {
+  border: 2px solid var(--class-blue-sec);
+}
+.blueClass {
+  background: var(--class-blue);
+}
+
+.emeraldBorder {
+  border: 2px solid var(--class-emerald-sec);
+}
+.emeraldClass {
+  background: var(--class-emerald);
+}
+
+.class {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--BG);
+  border-radius: 10px;
+  z-index: 101;
+  height: 48px;
+  width: 150px;
+  top: 32px;
+  left: 5px;
+}

@@ -54,4 +54,5 @@
 .content {
   margin-left: 248px;
   background-color: #ecf0f8;
+  overflow-x: auto;
 }

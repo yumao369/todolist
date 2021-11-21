@@ -1,0 +1,39 @@
+.calendarItem {
+  margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notThisMonth {
+  color: var(--Gray-8);
+}
+
+.week {
+  width: 24px;
+  height: 16px;
+  font-size: 12px;
+  color: var(--Gray-8);
+}
+
+.date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 48px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--Gray-8);
+  border-radius: 40px;
+  cursor: default;
+}
+
+.date:hover {
+  background-color: #fff2e5;
+}
+
+.selected {
+  background-color: #ffb366 !important;
+}

@@ -1,0 +1,133 @@
+.listItem {
+  position: relative;
+  width: 100%;
+  height: 92px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.listItem:hover {
+  background: var(--Gray-1);
+}
+
+.listItemChecked {
+  opacity: 0.6;
+}
+
+.listItemChecked:hover {
+  background: none;
+}
+
+.listItemClass {
+  position: absolute;
+  left: 11px;
+  width: 4px;
+  height: 32px;
+  border-radius: 1.5px;
+  background-color: var(--class-orange);
+}
+
+.listItemLeft {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.isChecked {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin: 0 24px 0 32px;
+  border-radius: 16px;
+  border: 2px solid var(--Gray-5);
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.isChecked:hover {
+  border: 2px solid var(--Theme-6);
+}
+
+.checked {
+  border: 2px solid var(--Theme-4) !important;
+}
+
+.bg {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background-color: var(--Theme-4);
+  transform: scale(0);
+  transition: 0.2s ease-in-out;
+}
+
+.bgChecked {
+  transform: scale(1);
+}
+
+.svgCheck {
+  z-index: 10;
+  fill: var(--BG);
+}
+
+.content {
+  color: var(--Gray-8);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: default;
+}
+
+.listItemRight {
+  position: absolute;
+  width: 384px;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  /* justify-content: end; 此处对于联想浏览器不生效*/
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 1)
+  );
+}
+
+.noListR {
+  width: 100px;
+}
+
+.svgModify {
+  /* margin: 0 24px 0 24px; */
+  margin: 0 24px 0 288px;
+  width: 24px;
+  height: 24px;
+  fill: var(--Gray-5);
+}
+
+.svgDele {
+  margin: 0 24px 0 0;
+  width: 24px;
+  height: 24px;
+  fill: var(--Gray-5);
+}
+
+.svgDele:hover {
+  fill: var(--Theme-6);
+  cursor: pointer;
+}
+
+.svgModify:hover {
+  fill: var(--Theme-6);
+  cursor: pointer;
+}
