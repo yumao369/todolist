@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import clock from "../../assets/svg/icon-clock.svg";
 
-export default function NewTodo({ getNew }) {
+export default function NewTodo({ text, onClickCancel, onClickSave }) {
   const [timingClicked, setTimingClicked] = useState(false);
   const [classMouseOn, setClassMouseOn] = useState(false);
   //组件内部用于控制该组件是否显示的量
@@ -13,9 +13,9 @@ export default function NewTodo({ getNew }) {
 
   console.log("newtodo");
 
-  useEffect(() => {
-    getNew({ exist, listData });
-  }, [exist, listData]);
+  // useEffect(() => {
+  //   getNew({ exist, listData });
+  // }, [exist, listData]);
 
   const handleTimingClick = () => {
     setTimingClicked(!timingClicked);
@@ -94,13 +94,13 @@ export default function NewTodo({ getNew }) {
             <div className={styles.btns}>
               <button
                 className={[styles.btn, styles.cancel].join(" ")}
-                onClick={handleCancel}
+                onClick={onClickCancel}
               >
                 取消
               </button>
               <button
                 className={[styles.btn, styles.save].join(" ")}
-                onClick={handleSave}
+                onClick={onClickSave}
               >
                 确定
               </button>

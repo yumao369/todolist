@@ -3,7 +3,7 @@ import CalendarItem from "./CalendarItem";
 import styles from "./index.module.css";
 import { useState } from "react/cjs/react.development";
 
-function Calendar({ today, visibleList, getDateSelected }) {
+function Calendar({ today, visibleList }) {
   // console.log("visibleList", visibleList);
   // const defaultSelected = () => {
   //   const newSelected = [];
@@ -20,9 +20,6 @@ function Calendar({ today, visibleList, getDateSelected }) {
   // };
   const [dateSelected, setDateSeleted] = useState(today.getDate());
   //useEffect最好设置依赖项，否则组件可能会重复喧嚷多次，可以通过console.log查看效果
-  useEffect(() => {
-    getDateSelected(dateSelected);
-  }, [dateSelected]);
 
   const useFunction = (callback) => {
     const newRef = useRef();
