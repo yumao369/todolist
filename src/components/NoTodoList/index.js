@@ -4,7 +4,6 @@ import styles from "./index.module.css";
 import todo from "../../assets/svg/icon-todo.svg";
 
 function NoTodoList() {
-  console.log("notodo");
   return (
     <div className={styles.noTodoList}>
       <svg className={styles.svg}>

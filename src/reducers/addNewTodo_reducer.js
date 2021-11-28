@@ -7,6 +7,9 @@ const todos = (state = [], action) => {
         ...state,
         {
           content: action.content,
+          isComplete: false,
+          class: "yellow",
+          deadline: "data",
         },
       ];
     default:

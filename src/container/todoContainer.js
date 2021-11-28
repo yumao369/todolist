@@ -3,9 +3,10 @@ import { setNewTodoAction } from "../actions/setNewTodo_action";
 import Todo from "../pages/Todo";
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log("statetodo", state);
   return {
     text: state.text,
+    todoList: state.content,
   };
 };
 

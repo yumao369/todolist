@@ -15,65 +15,27 @@ import styles from "./index.module.css";
 //解决方法：用usememo和usecallback，前者返回缓存的变量，后者返回缓存的函数
 //更好的方法：用redux将todo变成无状态组件，这样子组件的更新就不会影响到父组件
 
-const todoDate = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
-
-export default function Todo({ text, onClickNew }) {
+export default function Todo({ text, todoList, onClickNew }) {
   const today = new Date();
   const visibleList = calendar(today);
 
-  // const [data, setData] = useState(todoDate);
-  // const [addNew, setAddNew] = useState(false);
-  // const [dateSelected, setDateSelected] = useState(today.getDate() % 7);
-
-  // const useFunction = (callback) => {
-  //   const newRef = useRef();
-  //   newRef.current = callback;
-
-  //   return useCallback((...arr) => {
-  //     newRef.current.apply(null, arr);
-  //   }, []);
-  // };
-
-  // const getDateSelected = useFunction((date) => {
-  //   console.log(date);
-  //   setDateSelected(date % 7);
-  // });
-
-  // const getNew = ({ exist, listData }) => {
-  //   setAddNew(exist);
-  //   console.log("GETNEW");
-  //   console.log(listData);
-  //   if (Object.keys(listData).length) {
-  //     setData(() => {
-  //       console.log("data[dateSelected % 7]", data[dateSelected % 7]);
-  //       return data[dateSelected % 7].push(listData);
-  //     });
-  //   }
-  // };
-
-  // const addNewTodo = () => {
-  //   setAddNew(true);
-  // };
-
-  // const renderNewTodo = () => {
-  //   // console.log("renderNewTodo");
-  //   return addNew ? <NewTodo getNew={getNew} /> : "";
-  // };
-
-  // const renderTodo = () => {
-  //   // console.log("renderTodo");
-  //   console.log(data[dateSelected]);
-  //   return data[dateSelected].length !== 0 ? (
-  //     data[dateSelected].map((item) => {
-  //       return <todoList />;
-  //     })
-  //   ) : (
-  //     <NoTodoList />
-  //   );
-  // };
+  const renderTodoList = () => {
+    if (todoList.length) {
+      return todoList.map((item, index) => (
+        <TodoList
+          key={index}
+          content={item.content}
+          isComplete={item.isComplete}
+          class={item.class}
+          deadline={item.deadline}
+        ></TodoList>
+      ));
+    } else {
+      return <NoTodoList></NoTodoList>;
+    }
+  };
 
   const renderNewTodo = () => {
-    console.log("text", text);
     if (text.text) {
       return <MyNewTodo></MyNewTodo>;
     }
@@ -90,9 +52,8 @@ export default function Todo({ text, onClickNew }) {
         </div>
         <Calendar today={today} visibleList={visibleList} />
         <div className={styles.todoList}>
-          {/* <TodoList /> */}
-          <NoTodoList />
-          {/* {renderTodo()} */}
+          {/* <NoTodoList /> */}
+          {renderTodoList()}
         </div>
       </div>
 

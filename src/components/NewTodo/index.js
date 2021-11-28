@@ -3,19 +3,15 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import clock from "../../assets/svg/icon-clock.svg";
 
-export default function NewTodo({ text, onClickCancel, onClickSave }) {
+export default function NewTodo({
+  onClickCancel,
+  onClickSave,
+  onClickConcent,
+}) {
   const [timingClicked, setTimingClicked] = useState(false);
   const [classMouseOn, setClassMouseOn] = useState(false);
-  //组件内部用于控制该组件是否显示的量
-  const [exist, setExist] = useState(true);
-  const [listData, setListData] = useState({});
-  const [textValue, setTextValue] = useState("");
 
-  console.log("newtodo");
-
-  // useEffect(() => {
-  //   getNew({ exist, listData });
-  // }, [exist, listData]);
+  let textValue = "";
 
   const handleTimingClick = () => {
     setTimingClicked(!timingClicked);
@@ -29,19 +25,15 @@ export default function NewTodo({ text, onClickCancel, onClickSave }) {
     setClassMouseOn(false);
   };
 
-  const handleCancel = () => {
-    setExist(false);
-  };
-
   const handleSave = () => {
-    if (textValue !== "") {
-      setListData({ content: textValue });
-      setExist(false);
-    }
+    console.log("textvalue", textValue);
+    onClickSave();
+    onClickConcent(textValue);
+    console.log("333");
   };
 
   const handleTextChange = (e) => {
-    setTextValue(e.target.value);
+    textValue = e.target.value;
   };
 
   const renderTiming = () => {
@@ -100,7 +92,7 @@ export default function NewTodo({ text, onClickCancel, onClickSave }) {
               </button>
               <button
                 className={[styles.btn, styles.save].join(" ")}
-                onClick={onClickSave}
+                onClick={handleSave}
               >
                 确定
               </button>

@@ -16,12 +16,15 @@ export function cancelNewTodoAction() {
 }
 
 export function saveNseTodoAction() {
+  console.log("1111");
   return {
     type: saveNseTodo,
   };
 }
 
 export const addTodoAction = (content) => {
+  console.log("addcontent", content);
+  console.log("2222");
   return {
     type: addTodo,
     content,

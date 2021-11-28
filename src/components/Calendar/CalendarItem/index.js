@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 const week = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 
 function CalendarItem({ children, id, isThisMonth, selected, onClick }) {
-  console.log("calendaritem");
+  // console.log("calendaritem");
   return (
     <div
       className={[

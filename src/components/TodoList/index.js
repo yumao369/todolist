@@ -9,8 +9,6 @@ export default function TodoList() {
   const [isChecked, setIsChecked] = useState(false);
   const [mouseOn, setMouseOn] = useState(false);
 
-  console.log("todolist");
-
   const checkListItem = () => {
     setIsChecked(!isChecked);
   };
