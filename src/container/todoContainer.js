@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { setNewTodoAction } from "../actions/setNewTodo_action";
+import { setNewTodoAction } from "../action";
 import Todo from "../pages/Todo";
 
 const mapStateToProps = (state) => {

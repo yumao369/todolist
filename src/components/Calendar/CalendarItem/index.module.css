@@ -4,10 +4,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--Gray-8);
 }
 
 .notThisMonth {
-  color: var(--Gray-8);
+  color: var(--Gray-6);
 }
 
 .week {
@@ -25,7 +26,6 @@
   width: 48px;
   font-size: 24px;
   font-weight: 600;
-  color: var(--Gray-8);
   border-radius: 40px;
   cursor: default;
 }

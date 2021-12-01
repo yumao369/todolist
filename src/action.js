@@ -2,6 +2,10 @@ export const setNewTodo = "setNewTodo";
 export const cancelNewTodo = "cancelNewTodo";
 export const saveNseTodo = "saveNseTodo";
 export const addTodo = "addTodo";
+export const selectDate = "selectDate";
+let todoId = 0;
+let defaultCategory = { border: "orangeBorder", inner: "orangeClass" };
+let defaultDeadline = null;
 
 export function setNewTodoAction() {
   return {
@@ -22,11 +26,26 @@ export function saveNseTodoAction() {
   };
 }
 
-export const addTodoAction = (content) => {
-  console.log("addcontent", content);
-  console.log("2222");
+export const selectDateAction = (date) => {
+  return {
+    type: selectDate,
+    date,
+  };
+};
+
+export const addTodoAction = (
+  date,
+  content,
+  iscompleted,
+  category,
+  deadline
+) => {
   return {
     type: addTodo,
+    date,
     content,
+    iscompleted,
+    category,
+    deadline,
   };
 };

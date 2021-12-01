@@ -1,4 +1,4 @@
-import { addTodo } from "../actions/setNewTodo_action";
+import { addTodo } from "../action";
 
 const todos = (state = [], action) => {
   switch (action.type) {
@@ -6,10 +6,11 @@ const todos = (state = [], action) => {
       return [
         ...state,
         {
+          date: action.date,
           content: action.content,
-          isComplete: false,
-          class: "yellow",
-          deadline: "data",
+          iscompleted: action.iscompleted,
+          category: action.category,
+          deadline: action.deadline,
         },
       ];
     default:

@@ -3,10 +3,20 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import clock from "../../assets/svg/icon-clock.svg";
 
+const category = [
+  { border: "orangeBorder", inner: "orangeClass" },
+  { border: "redBorder", inner: "redClass" },
+  { border: "blueBorder", inner: "blueClass" },
+  { border: "emeraldBorder", inner: "emeraldClass" },
+];
+let defaultCategory = { border: "orangeBorder", inner: "orangeClass" };
+let defaultDeadline = null;
+
 export default function NewTodo({
+  selectDate,
   onClickCancel,
   onClickSave,
-  onClickConcent,
+  onClickaddTodo,
 }) {
   const [timingClicked, setTimingClicked] = useState(false);
   const [classMouseOn, setClassMouseOn] = useState(false);
@@ -26,14 +36,22 @@ export default function NewTodo({
   };
 
   const handleSave = () => {
-    console.log("textvalue", textValue);
     onClickSave();
-    onClickConcent(textValue);
-    console.log("333");
+    onClickaddTodo(
+      selectDate,
+      textValue,
+      false,
+      defaultCategory,
+      defaultDeadline
+    );
   };
 
   const handleTextChange = (e) => {
     textValue = e.target.value;
+  };
+
+  const handleClassItemClick = (category) => {
+    defaultCategory = category;
   };
 
   const renderTiming = () => {
@@ -51,29 +69,24 @@ export default function NewTodo({
 
   const renderClass = () => {
     if (classMouseOn) {
+      return <div className={styles.class}>{renderClassItem()}</div>;
+    }
+  };
+
+  const renderClassItem = () => {
+    return category.map((item, index) => {
       return (
-        <div className={styles.class}>
-          <div className={[styles.listClass]}>
-            <div className={styles.baseListClass}></div>
-          </div>
-          <div className={[styles.listClass, styles.redBorder].join(" ")}>
-            <div
-              className={[styles.baseListClass, styles.redClass].join(" ")}
-            ></div>
-          </div>
-          <div className={[styles.listClass, styles.blueBorder].join(" ")}>
-            <div
-              className={[styles.baseListClass, styles.blueClass].join(" ")}
-            ></div>
-          </div>
-          <div className={[styles.listClass, styles.emeraldBorder].join(" ")}>
-            <div
-              className={[styles.baseListClass, styles.emeraldClass].join(" ")}
-            ></div>
-          </div>
+        <div
+          key={index}
+          className={[styles.listClass, styles[item["border"]]].join(" ")}
+          onClick={() => handleClassItemClick(item)}
+        >
+          <div
+            className={[styles.baseListClass, styles[item["inner"]]].join(" ")}
+          ></div>
         </div>
       );
-    }
+    });
   };
 
   return (
@@ -125,8 +138,22 @@ export default function NewTodo({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <div className={styles.listClass}>
+            {/* <div className={styles.listClass}>
               <div className={styles.baseListClass}></div>
+            </div> */}
+            {console.log(defaultCategory)}
+            <div
+              className={[
+                styles.listClass,
+                styles[defaultCategory["border"]],
+              ].join(" ")}
+            >
+              <div
+                className={[
+                  styles.baseListClass,
+                  styles[defaultCategory["inner"]],
+                ].join(" ")}
+              ></div>
             </div>
             <p>选择分类</p>
             <div>{renderClass()}</div>

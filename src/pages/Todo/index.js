@@ -1,11 +1,10 @@
 import React, { useCallback, useRef } from "react";
 import { useState } from "react/cjs/react.development";
-import Calendar from "../../components/Calendar";
 import NewTodo from "../../components/NewTodo";
 import NoTodoList from "../../components/NoTodoList";
 import TodoList from "../../components/TodoList";
+import MyCalendar from "../../container/calendarContainer";
 import MyNewTodo from "../../container/newtodoContainer";
-import { calendar } from "./calendar";
 
 import styles from "./index.module.css";
 
@@ -16,9 +15,6 @@ import styles from "./index.module.css";
 //更好的方法：用redux将todo变成无状态组件，这样子组件的更新就不会影响到父组件
 
 export default function Todo({ text, todoList, onClickNew }) {
-  const today = new Date();
-  const visibleList = calendar(today);
-
   const renderTodoList = () => {
     if (todoList.length) {
       return todoList.map((item, index) => (
@@ -50,7 +46,7 @@ export default function Todo({ text, todoList, onClickNew }) {
             新建待办
           </button>
         </div>
-        <Calendar today={today} visibleList={visibleList} />
+        <MyCalendar />
         <div className={styles.todoList}>
           {/* <NoTodoList /> */}
           {renderTodoList()}

@@ -1,8 +1,4 @@
-import {
-  setNewTodo,
-  cancelNewTodo,
-  saveNseTodo,
-} from "../actions/setNewTodo_action";
+import { setNewTodo, cancelNewTodo, saveNseTodo } from "../action";
 
 const setNew = (state = { text: false }, action) => {
   switch (action.type) {

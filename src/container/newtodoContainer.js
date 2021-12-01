@@ -3,20 +3,22 @@ import {
   cancelNewTodoAction,
   saveNseTodoAction,
   addTodoAction,
-} from "../actions/setNewTodo_action";
+} from "../action";
 import NewTodo from "../components/NewTodo";
 
 const mapStateToProps = (state) => {
   console.log("statenew", state);
   return {
-    text: state.text,
+    todoList: state.content,
+    selectDate: state.selectDate.date,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onClickCancel: () => dispatch(cancelNewTodoAction()),
   onClickSave: () => dispatch(saveNseTodoAction()),
-  onClickConcent: (content) => dispatch(addTodoAction(content)),
+  onClickaddTodo: (date, content, iscompleted, category, deadline) =>
+    dispatch(addTodoAction(date, content, iscompleted, category, deadline)),
 });
 
 const MyNewTodo = connect(mapStateToProps, mapDispatchToProps)(NewTodo);
