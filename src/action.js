@@ -1,9 +1,13 @@
 export const setNewTodo = "setNewTodo";
 export const cancelNewTodo = "cancelNewTodo";
 export const saveNseTodo = "saveNseTodo";
+export const newTodoType = "newTodoType";
+export const editNewTodoType = "editNewTodoType";
 export const addTodo = "addTodo";
 export const selectDate = "selectDate";
-let todoId = 0;
+export const addId = "addId";
+export const editTodo = "editTodo";
+export const editId = "editId";
 let defaultCategory = { border: "orangeBorder", inner: "orangeClass" };
 let defaultDeadline = null;
 
@@ -20,11 +24,22 @@ export function cancelNewTodoAction() {
 }
 
 export function saveNseTodoAction() {
-  console.log("1111");
   return {
     type: saveNseTodo,
   };
 }
+
+export const newTodoTypeAction = () => {
+  return {
+    type: newTodoType,
+  };
+};
+
+export const editNewTodoTypeAction = () => {
+  return {
+    type: editNewTodoType,
+  };
+};
 
 export const selectDateAction = (date) => {
   return {
@@ -33,7 +48,14 @@ export const selectDateAction = (date) => {
   };
 };
 
+export const addIdAction = () => {
+  return {
+    type: addId,
+  };
+};
+
 export const addTodoAction = (
+  id,
   date,
   content,
   iscompleted,
@@ -42,10 +64,28 @@ export const addTodoAction = (
 ) => {
   return {
     type: addTodo,
+    id,
     date,
     content,
     iscompleted,
     category,
     deadline,
+  };
+};
+
+export const editTodoAction = (id, content, category, deadline) => {
+  return {
+    type: editTodo,
+    id,
+    content,
+    category,
+    deadline,
+  };
+};
+
+export const editIdAction = (id) => {
+  return {
+    type: editId,
+    id,
   };
 };

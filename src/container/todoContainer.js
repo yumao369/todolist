@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { setNewTodoAction } from "../action";
+import { newTodoTypeAction, setNewTodoAction } from "../action";
 import Todo from "../pages/Todo";
 
 const mapStateToProps = (state) => {
@@ -7,11 +7,13 @@ const mapStateToProps = (state) => {
   return {
     text: state.text,
     todoList: state.content,
+    selectDate: state.selectDate.date,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onClickNew: () => dispatch(setNewTodoAction()),
+  onclickNewType: () => dispatch(newTodoTypeAction()),
 });
 
 const myTodo = connect(mapStateToProps, mapDispatchToProps)(Todo);

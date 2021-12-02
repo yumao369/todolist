@@ -9,14 +9,21 @@ const category = [
   { border: "blueBorder", inner: "blueClass" },
   { border: "emeraldBorder", inner: "emeraldClass" },
 ];
+
 let defaultCategory = { border: "orangeBorder", inner: "orangeClass" };
 let defaultDeadline = null;
 
 export default function NewTodo({
+  listId,
+  id,
+  todoList,
+  newTodoType,
   selectDate,
   onClickCancel,
   onClickSave,
   onClickaddTodo,
+  onClickeditTodo,
+  onClickAddId,
 }) {
   const [timingClicked, setTimingClicked] = useState(false);
   const [classMouseOn, setClassMouseOn] = useState(false);
@@ -36,14 +43,21 @@ export default function NewTodo({
   };
 
   const handleSave = () => {
-    onClickSave();
-    onClickaddTodo(
-      selectDate,
-      textValue,
-      false,
-      defaultCategory,
-      defaultDeadline
-    );
+    if (newTodoType) {
+      onClickSave();
+      onClickaddTodo(
+        listId,
+        selectDate,
+        textValue,
+        false,
+        defaultCategory,
+        defaultDeadline
+      );
+      onClickAddId();
+    } else {
+      onClickSave();
+      onClickeditTodo(id, textValue, defaultCategory, defaultDeadline);
+    }
   };
 
   const handleTextChange = (e) => {
@@ -115,6 +129,11 @@ export default function NewTodo({
             className={styles.content}
             placeholder="想做点什么？"
             onChange={handleTextChange}
+            defaultValue={
+              newTodoType
+                ? textValue
+                : todoList.find((item) => item.id === id).content
+            }
           ></textarea>
         </div>
         <div className={styles.bottom}>

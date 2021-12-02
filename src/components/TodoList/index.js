@@ -5,7 +5,16 @@ import complete from "../../assets/svg/icon-complete.svg";
 import modify from "../../assets/svg/icon-modify.svg";
 import dele from "../../assets/svg/icon-delete.svg";
 
-export default function TodoList() {
+export default function TodoList({
+  id,
+  content,
+  isComplete,
+  categoty,
+  deadline,
+  onClickEdit,
+  onclickEditNew,
+  onclickEditId,
+}) {
   const [isChecked, setIsChecked] = useState(false);
   const [mouseOn, setMouseOn] = useState(false);
 
@@ -21,11 +30,17 @@ export default function TodoList() {
     setMouseOn(false);
   };
 
+  const handleEditClick = () => {
+    onClickEdit();
+    onclickEditNew();
+    onclickEditId(id);
+  };
+
   const renderListR = () => {
     if (mouseOn && !isChecked) {
       return (
         <div className={styles.listItemRight}>
-          <svg className={styles.svgModify}>
+          <svg className={styles.svgModify} onClick={handleEditClick}>
             <use xlinkHref="#icon-modify" />
           </svg>
           <svg className={styles.svgDele}>
@@ -68,9 +83,7 @@ export default function TodoList() {
           </svg>
         </div>
         {/**待办事项内容 */}
-        <div className={styles.content}>
-          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        </div>
+        <div className={styles.content}>{content}</div>
       </div>
       <>{renderListR()}</>
     </div>
