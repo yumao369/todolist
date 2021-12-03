@@ -10,8 +10,8 @@ const category = [
   { border: "emeraldBorder", inner: "emeraldClass" },
 ];
 
-let defaultCategory = { border: "orangeBorder", inner: "orangeClass" };
-let defaultDeadline = null;
+// let defaultCategory = { border: "orangeBorder", inner: "orangeClass" };
+// let defaultDeadline = null;
 
 export default function NewTodo({
   listId,
@@ -28,7 +28,19 @@ export default function NewTodo({
   const [timingClicked, setTimingClicked] = useState(false);
   const [classMouseOn, setClassMouseOn] = useState(false);
 
-  let textValue = "";
+  const [defaultContent, setDefaultContent] = useState("");
+  const [defaultCategory, setDefaultCategory] = useState(category[0]);
+  const [hours, setHours] = useState("");
+  const [minutes, setMinutes] = useState("");
+
+  useEffect(() => {
+    if (!newTodoType) {
+      setDefaultCategory(todoList.find((item) => item.id === id).category);
+      setDefaultContent(todoList.find((item) => item.id === id).content);
+      setHours(todoList.find((item) => item.id === id).hour);
+      setMinutes(todoList.find((item) => item.id === id).minute);
+    }
+  }, [id, newTodoType, todoList]);
 
   const handleTimingClick = () => {
     setTimingClicked(!timingClicked);
@@ -48,33 +60,50 @@ export default function NewTodo({
       onClickaddTodo(
         listId,
         selectDate,
-        textValue,
+        defaultContent,
         false,
         defaultCategory,
-        defaultDeadline
+        hours,
+        minutes
       );
       onClickAddId();
     } else {
       onClickSave();
-      onClickeditTodo(id, textValue, defaultCategory, defaultDeadline);
+      onClickeditTodo(id, defaultContent, defaultCategory, hours, minutes);
     }
   };
 
   const handleTextChange = (e) => {
-    textValue = e.target.value;
+    setDefaultContent(e.target.value);
   };
 
-  const handleClassItemClick = (category) => {
-    defaultCategory = category;
+  const handleHoursChange = (e) => {
+    setHours(e.target.value);
+  };
+
+  const handleMinutesChange = (e) => {
+    setMinutes(e.target.value);
+  };
+
+  const handleClassItemClick = (index) => {
+    setDefaultCategory(category[index]);
   };
 
   const renderTiming = () => {
     if (timingClicked) {
       return (
         <div className={styles.setTiming}>
-          <input className={styles.time}></input>
+          <input
+            className={styles.time}
+            defaultValue={hours}
+            onChange={handleHoursChange}
+          ></input>
           <p>时</p>
-          <input className={styles.time}></input>
+          <input
+            className={styles.time}
+            defaultValue={minutes}
+            onChange={handleMinutesChange}
+          ></input>
           <p>分</p>
         </div>
       );
@@ -93,7 +122,7 @@ export default function NewTodo({
         <div
           key={index}
           className={[styles.listClass, styles[item["border"]]].join(" ")}
-          onClick={() => handleClassItemClick(item)}
+          onClick={() => handleClassItemClick(index)}
         >
           <div
             className={[styles.baseListClass, styles[item["inner"]]].join(" ")}
@@ -129,11 +158,7 @@ export default function NewTodo({
             className={styles.content}
             placeholder="想做点什么？"
             onChange={handleTextChange}
-            defaultValue={
-              newTodoType
-                ? textValue
-                : todoList.find((item) => item.id === id).content
-            }
+            defaultValue={defaultContent}
           ></textarea>
         </div>
         <div className={styles.bottom}>
@@ -160,7 +185,6 @@ export default function NewTodo({
             {/* <div className={styles.listClass}>
               <div className={styles.baseListClass}></div>
             </div> */}
-            {console.log(defaultCategory)}
             <div
               className={[
                 styles.listClass,

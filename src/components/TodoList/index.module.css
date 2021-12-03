@@ -27,7 +27,22 @@
   width: 4px;
   height: 32px;
   border-radius: 1.5px;
-  background-color: var(--class-orange);
+}
+
+.orangeClass {
+  background: var(--class-orange);
+}
+
+.redClass {
+  background: var(--class-red);
+}
+
+.blueClass {
+  background: var(--class-blue);
+}
+
+.emeraldClass {
+  background: var(--class-emerald);
 }
 
 .listItemLeft {

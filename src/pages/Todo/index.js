@@ -40,7 +40,8 @@ export default function Todo({
             content={item.content}
             isCompleted={item.isComplete}
             category={item.category}
-            deadline={item.deadline}
+            hour={item.hour}
+            minute={item.minute}
           ></MyTodoList>
         );
       });

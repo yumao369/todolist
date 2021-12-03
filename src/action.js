@@ -60,7 +60,8 @@ export const addTodoAction = (
   content,
   iscompleted,
   category,
-  deadline
+  hour,
+  minute
 ) => {
   return {
     type: addTodo,
@@ -69,17 +70,19 @@ export const addTodoAction = (
     content,
     iscompleted,
     category,
-    deadline,
+    hour,
+    minute,
   };
 };
 
-export const editTodoAction = (id, content, category, deadline) => {
+export const editTodoAction = (id, content, category, hour, minute) => {
   return {
     type: editTodo,
     id,
     content,
     category,
-    deadline,
+    hour,
+    minute,
   };
 };
 

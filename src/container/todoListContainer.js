@@ -7,7 +7,6 @@ import {
 import TodoList from "../components/TodoList";
 
 const mapStateToProps = (state) => {
-  console.log("statetodo", state);
   return {
     text: state.text,
   };

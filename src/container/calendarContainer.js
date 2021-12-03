@@ -3,7 +3,6 @@ import { selectDateAction } from "../action";
 import Calendar from "../components/Calendar";
 
 const mapStateToProps = (state) => {
-  console.log("statenew", state);
   return {
     selectDate: state.selectDate.date,
   };

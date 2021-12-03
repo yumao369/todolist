@@ -9,12 +9,14 @@ export default function TodoList({
   id,
   content,
   isComplete,
-  categoty,
-  deadline,
+  category,
+  hour,
+  minute,
   onClickEdit,
   onclickEditNew,
   onclickEditId,
 }) {
+  console.log("category", category);
   const [isChecked, setIsChecked] = useState(false);
   const [mouseOn, setMouseOn] = useState(false);
 
@@ -65,7 +67,9 @@ export default function TodoList({
       onMouseLeave={handleMouseLeave}
     >
       {/**待办事项类别 */}
-      <div className={styles.listItemClass}></div>
+      <div
+        className={[styles.listItemClass, styles[category["inner"]]].join(" ")}
+      ></div>
       {/**待办事项左边部分 */}
       <div className={styles.listItemLeft}>
         {/**是否完成按钮 */}

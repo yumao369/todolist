@@ -11,7 +11,8 @@ const todos = (state = [], action) => {
           content: action.content,
           iscompleted: action.iscompleted,
           category: action.category,
-          deadline: action.deadline,
+          hour: action.hour,
+          minute: action.minute,
         },
       ];
     case editTodo:
@@ -21,7 +22,8 @@ const todos = (state = [], action) => {
               ...item,
               content: action.content,
               category: action.category,
-              deadline: action.deadline,
+              hour: action.hour,
+              minute: action.minute,
             }
           : item
       );

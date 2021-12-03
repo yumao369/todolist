@@ -9,7 +9,6 @@ import {
 import NewTodo from "../components/NewTodo";
 
 const mapStateToProps = (state) => {
-  console.log("statenew", state);
   return {
     todoList: state.content,
     selectDate: state.selectDate.date,
@@ -22,10 +21,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   onClickCancel: () => dispatch(cancelNewTodoAction()),
   onClickSave: () => dispatch(saveNseTodoAction()),
-  onClickaddTodo: (id, date, content, iscompleted, category, deadline) =>
-    dispatch(addTodoAction(id, date, content, iscompleted, category, deadline)),
-  onClickeditTodo: (id, content, category, deadline) =>
-    dispatch(editTodoAction(id, content, category, deadline)),
+  onClickaddTodo: (id, date, content, iscompleted, category, hour, minute) =>
+    dispatch(
+      addTodoAction(id, date, content, iscompleted, category, hour, minute)
+    ),
+  onClickeditTodo: (id, content, category, hour, minute) =>
+    dispatch(editTodoAction(id, content, category, hour, minute)),
   onClickAddId: () => dispatch(addIdAction()),
 });
 
