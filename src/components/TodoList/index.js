@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import complete from "../../assets/svg/icon-complete.svg";
 import modify from "../../assets/svg/icon-modify.svg";
 import dele from "../../assets/svg/icon-delete.svg";
+import clock from "../../assets/svg/icon-clock.svg";
 
 export default function TodoList({
   id,
@@ -57,6 +58,21 @@ export default function TodoList({
     }
   };
 
+  const renderClock = () => {
+    if (hour) {
+      return (
+        <div className={styles.clock}>
+          <svg className={styles.svgClock}>
+            <use xlinkHref="#icon-clock" />
+          </svg>
+          <div className={styles.clockContent}>
+            {hour}:{minute}
+          </div>
+        </div>
+      );
+    }
+  };
+
   return (
     <div
       className={[
@@ -87,7 +103,10 @@ export default function TodoList({
           </svg>
         </div>
         {/**待办事项内容 */}
-        <div className={styles.content}>{content}</div>
+        <div className={styles.listContent}>
+          <div className={styles.content}>{content}</div>
+          {renderClock()}
+        </div>
       </div>
       <>{renderListR()}</>
     </div>
