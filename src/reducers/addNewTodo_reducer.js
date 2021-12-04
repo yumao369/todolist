@@ -1,4 +1,4 @@
-import { addTodo, editTodo } from "../action";
+import { addTodo, complete, deleteTodo, editTodo } from "../action";
 
 const todos = (state = [], action) => {
   switch (action.type) {
@@ -25,6 +25,14 @@ const todos = (state = [], action) => {
               hour: action.hour,
               minute: action.minute,
             }
+          : item
+      );
+    case deleteTodo:
+      return state.filter((item) => item.id !== action.id);
+    case complete:
+      return state.map((item) =>
+        item.id === action.id
+          ? { ...item, iscompleted: !item.iscompleted }
           : item
       );
     default:

@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 import {
+  CompleteAction,
+  deleteTodoAction,
   editIdAction,
   editNewTodoTypeAction,
   setNewTodoAction,
@@ -16,6 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
   onClickEdit: () => dispatch(setNewTodoAction()),
   onclickEditNew: () => dispatch(editNewTodoTypeAction()),
   onclickEditId: (id) => dispatch(editIdAction(id)),
+  onClickDeleteTodo: (id) => dispatch(deleteTodoAction(id)),
+  onClickComplete: (id) => dispatch(CompleteAction(id)),
 });
 
 const MyTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);

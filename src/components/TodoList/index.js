@@ -16,6 +16,7 @@ export default function TodoList({
   onClickEdit,
   onclickEditNew,
   onclickEditId,
+  onClickDeleteTodo,
 }) {
   console.log("category", category);
   const [isChecked, setIsChecked] = useState(false);
@@ -39,6 +40,12 @@ export default function TodoList({
     onclickEditId(id);
   };
 
+  const handleDeleteClick = () => {
+    console.log(id);
+    console.log("a");
+    onClickDeleteTodo(id);
+  };
+
   const renderListR = () => {
     if (mouseOn && !isChecked) {
       return (
@@ -46,7 +53,7 @@ export default function TodoList({
           <svg className={styles.svgModify} onClick={handleEditClick}>
             <use xlinkHref="#icon-modify" />
           </svg>
-          <svg className={styles.svgDele}>
+          <svg className={styles.svgDele} onClick={handleDeleteClick}>
             <use xlinkHref="#icon-delete" />
           </svg>
         </div>

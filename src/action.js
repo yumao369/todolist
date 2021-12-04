@@ -7,7 +7,9 @@ export const addTodo = "addTodo";
 export const selectDate = "selectDate";
 export const addId = "addId";
 export const editTodo = "editTodo";
+export const deleteTodo = "deleteTodo";
 export const editId = "editId";
+export const complete = "complete";
 let defaultCategory = { border: "orangeBorder", inner: "orangeClass" };
 let defaultDeadline = null;
 
@@ -86,9 +88,24 @@ export const editTodoAction = (id, content, category, hour, minute) => {
   };
 };
 
+export const deleteTodoAction = (id) => {
+  console.log("deleteTodo");
+  return {
+    type: deleteTodo,
+    id,
+  };
+};
+
 export const editIdAction = (id) => {
   return {
     type: editId,
+    id,
+  };
+};
+
+export const CompleteAction = (id) => {
+  return {
+    type: complete,
     id,
   };
 };
