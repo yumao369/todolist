@@ -9,7 +9,7 @@ import clock from "../../assets/svg/icon-clock.svg";
 export default function TodoList({
   id,
   content,
-  isComplete,
+  isCompleted,
   category,
   hour,
   minute,
@@ -17,14 +17,10 @@ export default function TodoList({
   onclickEditNew,
   onclickEditId,
   onClickDeleteTodo,
+  onClickComplete,
 }) {
   console.log("category", category);
-  const [isChecked, setIsChecked] = useState(false);
   const [mouseOn, setMouseOn] = useState(false);
-
-  const checkListItem = () => {
-    setIsChecked(!isChecked);
-  };
 
   const handleMouseEnter = () => {
     setMouseOn(true);
@@ -47,7 +43,7 @@ export default function TodoList({
   };
 
   const renderListR = () => {
-    if (mouseOn && !isChecked) {
+    if (mouseOn && !isCompleted) {
       return (
         <div className={styles.listItemRight}>
           <svg className={styles.svgModify} onClick={handleEditClick}>
@@ -84,7 +80,7 @@ export default function TodoList({
     <div
       className={[
         styles.listItem,
-        isChecked ? styles.listItemChecked : "",
+        isCompleted ? styles.listItemChecked : "",
       ].join(" ")}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -97,13 +93,15 @@ export default function TodoList({
       <div className={styles.listItemLeft}>
         {/**是否完成按钮 */}
         <div
-          className={[styles.isChecked, isChecked ? styles.checked : ""].join(
+          className={[styles.isChecked, isCompleted ? styles.checked : ""].join(
             " "
           )}
-          onClick={checkListItem}
+          onClick={() => onClickComplete(id)}
         >
           <div
-            className={[styles.bg, isChecked ? styles.bgChecked : ""].join(" ")}
+            className={[styles.bg, isCompleted ? styles.bgChecked : ""].join(
+              " "
+            )}
           ></div>
           <svg className={styles.svgCheck}>
             <use xlinkHref="#icon-complete" />

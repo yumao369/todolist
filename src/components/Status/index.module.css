@@ -1,0 +1,26 @@
+.status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.overview {
+  width: 218px;
+  height: 218px;
+}
+
+.svgOverview {
+  background-color: var(--Gray-2);
+  border-radius: 50%;
+  transform: rotate(-90deg);
+}
+
+.percent {
+  stroke: var(--Theme-4);
+}
+
+.textInfo {
+  margin: 0 5px 0 5px;
+  color: var(--Theme-4);
+}
