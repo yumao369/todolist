@@ -10,6 +10,7 @@
   padding: 32px;
   border-radius: 16px;
   background-color: var(--BG);
+  margin-bottom: 24px;
 }
 
 .head {

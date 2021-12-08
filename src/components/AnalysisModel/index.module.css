@@ -1,0 +1,92 @@
+.analysisModel {
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 360px;
+  height: 464px;
+  border-radius: 16px;
+  background-color: var(--BG);
+  margin-bottom: 24px;
+}
+
+@media (min-width: 1280px) {
+  .analysisModel {
+    width: calc((100% - 24px) / 2);
+    margin-right: 24px;
+  }
+}
+
+.head {
+  color: var(--Gray-7);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  line-height: 1.5rem;
+  margin: 2rem 0 4rem;
+}
+
+.svgBox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 288px;
+}
+
+.diagram {
+  width: 272px;
+  height: 272px;
+  /* height: 300px; */
+}
+
+.path {
+  stroke: var(--Gray-2);
+  stroke-width: 4px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.specialPath {
+  stroke: var(--Theme-6);
+  stroke-width: 4px;
+  fill: var(--Theme-A2);
+}
+
+.span {
+  position: absolute;
+  color: var(--Gray-7);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.span1 {
+  top: -26px;
+  left: 131px;
+}
+.span2 {
+  top: 233px;
+  left: 0;
+}
+.span3 {
+  top: 233px;
+  left: 259px;
+}
+
+.text {
+  color: var(--Gray-7);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1px;
+}
+
+.info {
+  position: static;
+  color: var(--Theme-6);
+  font-size: 14px;
+}

@@ -11,6 +11,7 @@ import logo from "../../assets/png/logo.png";
 import clock from "../../assets/svg/icon-clock.svg";
 import statistics from "../../assets/svg/icon-statistics.svg";
 import myTodo from "../../container/todoContainer";
+import MyStatis from "../../container/statisContainer";
 
 const menuData = [
   { svgId: "#icon-clock", menuName: "待办事项", path: "/home" },
@@ -71,7 +72,7 @@ export default function Home() {
         {/* https://segmentfault.com/q/1010000009790180 */}
         {/* <Router history={history}> */}
         <Route exact path="/home" component={myTodo}></Route>
-        <Route path="/home/statis" component={Statis}></Route>
+        <Route path="/home/statis" component={MyStatis}></Route>
         {/* </Router> */}
       </div>
     </div>

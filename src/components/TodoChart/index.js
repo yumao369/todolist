@@ -51,11 +51,11 @@ export default function TodoChart() {
     changeRowHeight();
     changeVisibleData();
     changePXAndPY();
-    console.log("ROWHEIGHT", rowHeight);
-    console.log("visibleData", visibleData);
-    console.log("PX", pX);
-    console.log("PY", pY);
-    console.log("path", path);
+    // console.log("ROWHEIGHT", rowHeight);
+    // console.log("visibleData", visibleData);
+    // console.log("PX", pX);
+    // console.log("PY", pY);
+    // console.log("path", path);
   }, [
     xCoordParm,
     screenWidth,
@@ -77,7 +77,7 @@ export default function TodoChart() {
 
   //监听视口宽度
   const monitorScreenWidth = () => {
-    console.log("setScreenWidth");
+    // console.log("setScreenWidth");
     window.addEventListener("resize", () => {
       window.screenWidth = document.body.clientWidth;
       setScreenWidth(window.screenWidth);
@@ -86,7 +86,7 @@ export default function TodoChart() {
 
   // 侦听视口宽度，到达断点时改变svg折线图的x坐标参数/及其附属盒子的宽度
   const changeXCoordParm = () => {
-    console.log("setXCoordParm");
+    // console.log("setXCoordParm");
     if (screenWidth < 1152) {
       setXCoordParm(1);
     } else if (screenWidth >= 1152 && screenWidth < 1280) {
@@ -98,12 +98,12 @@ export default function TodoChart() {
 
   //svgbox随窗口大小改变而改变
   const changeSvgBoxWidth = () => {
-    console.log("setSvgBoxWidth");
+    // console.log("setSvgBoxWidth");
     setSvgBoxWidth(644 * xCoordParm);
   };
 
   const changeViewWidth = () => {
-    console.log("setViewWidth");
+    // console.log("setViewWidth");
     setViewWidth(736 * xCoordParm);
   };
 
@@ -120,7 +120,7 @@ export default function TodoChart() {
   };
 
   const changeRowHeight = () => {
-    console.log("setRowHeight visibledata");
+    // console.log("setRowHeight visibledata");
     let maxRow = Math.max(...visibleData);
     //328是path的高度
     setRowHeight(parseInt(328 / maxRow));
@@ -129,13 +129,13 @@ export default function TodoChart() {
   const changeVisibleData = () => {
     // !this.isSampleMode ? this.todoNumberCompleted : [2, 1, 4, 3, 6, 2, 3, 2, 0];
     //设置对象不能这样，因为react检查时是对地址的检查，虽然内容一样，但是引用地址不一样，这样会导致每次set的值不一样，导致重新渲染，useeffect，而重新渲染，set的值不一样，又会重新set，导致无限循环
-    console.log("setVisibleData");
+    // console.log("setVisibleData");
     setVisibleData([2, 1, 8, 3, 6, 2, 3, 2, 0]);
   };
 
   const changePXAndPY = () => {
     const tempPX = pX;
-    console.log("tempPX", tempPX);
+    // console.log("tempPX", tempPX);
     const tempPY = pY;
     for (let i = 0; i < 9; i++) {
       tempPX.splice(i, 1, parseInt(92 * xCoordParm * i * 100) / 100);
@@ -185,7 +185,7 @@ export default function TodoChart() {
   };
 
   const renderHoverBox = () => {
-    console.log("hoverBox", hoverBox, hoverBox[0]);
+    // console.log("hoverBox", hoverBox, hoverBox[0]);
     return hoverBox.map((item) => {
       return (
         <div
