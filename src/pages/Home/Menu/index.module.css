@@ -10,7 +10,7 @@
 }
 
 .menuSelected {
-  background-color: #ffc266 !important;
+  background-color: var(--Theme-5) !important;
 }
 
 .menu:hover {

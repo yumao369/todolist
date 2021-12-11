@@ -6,6 +6,7 @@ import editIdRe from "./editId_reduce";
 import selectDateRe from "./selectDate_reducer";
 import setNewTotoType from "./setNewTodoType_reducer";
 import setNew from "./setNewTodo_reducer";
+import setSkin from "./skin_reducer";
 
 const rootReducer = combineReducers({
   text: setNew,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   newTodoType: setNewTotoType,
   editId: editIdRe,
   id: addIdRe,
+  skin: setSkin,
 });
 
 export default rootReducer;

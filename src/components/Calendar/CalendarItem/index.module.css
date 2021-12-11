@@ -35,5 +35,5 @@
 }
 
 .selected {
-  background-color: #ffb366 !important;
+  background-color: var(--Theme-6) !important;
 }

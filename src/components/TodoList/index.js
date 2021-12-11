@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import styles from "./index.module.css";
-import complete from "../../assets/svg/icon-complete.svg";
+import check from "../../assets/svg/icon-check.svg";
 import modify from "../../assets/svg/icon-modify.svg";
 import dele from "../../assets/svg/icon-delete.svg";
 import clock from "../../assets/svg/icon-clock.svg";
@@ -104,7 +104,7 @@ export default function TodoList({
             )}
           ></div>
           <svg className={styles.svgCheck}>
-            <use xlinkHref="#icon-complete" />
+            <use xlinkHref="#icon-check" />
           </svg>
         </div>
         {/**待办事项内容 */}
