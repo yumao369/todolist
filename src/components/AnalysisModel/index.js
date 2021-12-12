@@ -40,7 +40,7 @@ const bottomY = ["144", "155", "166", "177", "188", "199", "210", "221"];
 // ];
 
 export default function AnalysisModel({ todoList, date, isSample }) {
-  console.log("todolist", todoList);
+  // console.log("todolist", todoList);
   // const [isSampleData, setIsSampleData] = useState(true);
   const [ratio, setRatio] = useState([]);
   const [specialPath, setSpecialPath] = useState();
@@ -65,9 +65,9 @@ export default function AnalysisModel({ todoList, date, isSample }) {
     // changeIsSampleData();
     changeRatio();
 
-    console.log("ratio", ratio);
-    console.log("level", level1, level2, level3);
-    console.log(visibleL3Y, visibleL2X, visibleL2Y, visibleL1X, visibleL1Y);
+    // console.log("ratio", ratio);
+    // console.log("level", level1, level2, level3);
+    // console.log(visibleL3Y, visibleL2X, visibleL2Y, visibleL1X, visibleL1Y);
     changeLevel();
     changeLevelMax();
     changePoint();
@@ -105,8 +105,8 @@ export default function AnalysisModel({ todoList, date, isSample }) {
       todo = todoList.filter((item) => item.date === date[i]);
       // todoCompleted = todoList.filter((item) => item.iscompleted === true);
       todoCompleted = todo.filter((item) => item.iscompleted === true);
-      console.log("todoana", todo);
-      console.log("todocana", todoCompleted);
+      // console.log("todoana", todo);
+      // console.log("todocana", todoCompleted);
       if (todo.length) {
         let value =
           Math.floor((todoCompleted.length / todo.length) * 100) / 100;

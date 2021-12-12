@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from "react";
-import useDeepCompareEffect from "use-deep-compare-effect";
+import React, { useEffect, useMemo, useState } from "react";
+import moment from "moment";
 import styles from "./index.module.css";
 
-export default function TodoChart() {
-  const [xCoordParm, setXCoordParm] = useState(1);
+export default function TodoChart({ date, todoList, isSample }) {
+  const today = new Date();
   const [screenWidth, setScreenWidth] = useState(document.body.clientWidth);
-  const [svgBoxWidth, setSvgBoxWidth] = useState(0);
-  const [viewWidth, setViewWidth] = useState(736);
-  const [rowHeight, setRowHeight] = useState(328);
-  const [visibleData, setVisibleData] = useState([2, 1, 4, 3, 6, 2, 3, 2, 0]);
-  const [pX, setPX] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  const [pY, setPY] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  const [path, setPath] = useState("");
   const [visiblePoint, setVisiblePoint] = useState(0);
+
+  const todoCompleted = (() => {
+    let todoCompleted;
+    let todo;
+    let temp = [];
+    let datee = [...date];
+    datee.unshift(
+      moment(new Date(today.getTime() - 192 * 60 * 60 * 1000)).format(
+        "yyyy-MM-DD"
+      )
+    );
+    datee.push(moment(today).format("yyyy-MM-DD"));
+    for (let i = 0; i < 9; i++) {
+      todo = todoList.filter((item) => item.date === datee[i]);
+      todoCompleted = todo.filter((item) => item.iscompleted === true);
+      if (todoCompleted.length) {
+        temp.push(todoCompleted.length);
+      } else {
+        temp.push(0);
+      }
+    }
+    return temp;
+  })();
 
   const points = [1, 2, 3, 4, 5, 6, 7];
 
-  const today = new Date();
-
-  //前七日
-  const date = [
-    new Date(today.getTime() - 168 * 60 * 60 * 1000),
-    new Date(today.getTime() - 144 * 60 * 60 * 1000),
-    new Date(today.getTime() - 120 * 60 * 60 * 1000),
-    new Date(today.getTime() - 96 * 60 * 60 * 1000),
-    new Date(today.getTime() - 72 * 60 * 60 * 1000),
-    new Date(today.getTime() - 48 * 60 * 60 * 1000),
-    new Date(today.getTime() - 24 * 60 * 60 * 1000),
-  ];
-
-  //
   const hoverBox = [
     { id: 0 },
     { id: 1 },
@@ -40,75 +42,63 @@ export default function TodoChart() {
     { id: 6 },
   ];
 
-  useDeepCompareEffect(() => {
-    // sethoverBox();
-    // console.log("hoverBox", hoverBox);
+  useEffect(() => {
     monitorScreenWidth();
-    changeXCoordParm();
-    changeSvgBoxWidth();
-    changeViewWidth();
-    changePath();
-    changeRowHeight();
-    changeVisibleData();
-    changePXAndPY();
-    // console.log("ROWHEIGHT", rowHeight);
-    // console.log("visibleData", visibleData);
-    // console.log("PX", pX);
-    // console.log("PY", pY);
-    // console.log("path", path);
-  }, [
-    xCoordParm,
-    screenWidth,
-    svgBoxWidth,
-    viewWidth,
-    rowHeight,
-    visibleData,
-    pX,
-    pY,
-    path,
-  ]);
+  });
 
-  // const sethoverBox = () => {
-  //   for (let i = 0; i < 7; i++) {
-  //     hoverBox[i] = {};
-  //     hoverBox[i].id = i;
-  //   }
-  // };
-
-  //监听视口宽度
   const monitorScreenWidth = () => {
-    // console.log("setScreenWidth");
     window.addEventListener("resize", () => {
       window.screenWidth = document.body.clientWidth;
       setScreenWidth(window.screenWidth);
     });
   };
 
-  // 侦听视口宽度，到达断点时改变svg折线图的x坐标参数/及其附属盒子的宽度
-  const changeXCoordParm = () => {
-    // console.log("setXCoordParm");
+  const xCoordParm = useMemo(() => {
     if (screenWidth < 1152) {
-      setXCoordParm(1);
+      return 1;
     } else if (screenWidth >= 1152 && screenWidth < 1280) {
-      setXCoordParm(1.15);
+      return 1.15;
     } else if (screenWidth >= 1280) {
-      setXCoordParm(1.3);
+      return 1.3;
     }
-  };
+  }, [screenWidth]);
 
-  //svgbox随窗口大小改变而改变
-  const changeSvgBoxWidth = () => {
-    // console.log("setSvgBoxWidth");
-    setSvgBoxWidth(644 * xCoordParm);
-  };
+  const svgBoxWidth = useMemo(() => {
+    return 644 * xCoordParm;
+  }, [xCoordParm]);
 
-  const changeViewWidth = () => {
-    // console.log("setViewWidth");
-    setViewWidth(736 * xCoordParm);
-  };
+  const viewWidth = useMemo(() => {
+    return 736 * xCoordParm;
+  }, [xCoordParm]);
 
-  const changePath = () => {
-    setPath(`M ${pX[0]} ${pY[0]}
+  const visibleData = useMemo(() => {
+    return isSample ? [2, 1, 8, 3, 6, 2, 3, 2, 0] : todoCompleted;
+  }, [isSample]);
+
+  const rowHeight = useMemo(() => {
+    let maxRow = Math.max(...visibleData);
+    //328是path的高度
+    return parseInt(328 / maxRow);
+  }, [visibleData]);
+
+  const pX = useMemo(() => {
+    const tempPX = [];
+    for (let i = 0; i < 9; i++) {
+      tempPX.push(parseInt(92 * xCoordParm * i * 100) / 100);
+    }
+    return tempPX;
+  }, [xCoordParm]);
+
+  const pY = useMemo(() => {
+    const tempPY = [];
+    for (let i = 0; i < 9; i++) {
+      tempPY.push((98 + rowHeight * visibleData[i]) * -1);
+    }
+    return tempPY;
+  }, [visibleData, rowHeight]);
+
+  const path = useMemo(() => {
+    return `M ${pX[0]} ${pY[0]}
     C ${pX[0] + 50} ${pY[0]}, ${pX[1] - 50} ${pY[1]}, ${pX[1]} ${pY[1]}
     S ${pX[1] + 50} ${pY[2]}, ${pX[2]} ${pY[2]}
     S ${pX[2] + 50} ${pY[3]}, ${pX[3]} ${pY[3]}
@@ -116,34 +106,8 @@ export default function TodoChart() {
     S ${pX[4] + 50} ${pY[5]}, ${pX[5]} ${pY[5]}
     S ${pX[5] + 50} ${pY[6]}, ${pX[6]} ${pY[6]}
     S ${pX[6] + 50} ${pY[7]}, ${pX[7]} ${pY[7]}
-    S ${pX[7] + 50} ${pY[8]}, ${pX[8]} ${pY[8]}`);
-  };
-
-  const changeRowHeight = () => {
-    // console.log("setRowHeight visibledata");
-    let maxRow = Math.max(...visibleData);
-    //328是path的高度
-    setRowHeight(parseInt(328 / maxRow));
-  };
-
-  const changeVisibleData = () => {
-    // !this.isSampleMode ? this.todoNumberCompleted : [2, 1, 4, 3, 6, 2, 3, 2, 0];
-    //设置对象不能这样，因为react检查时是对地址的检查，虽然内容一样，但是引用地址不一样，这样会导致每次set的值不一样，导致重新渲染，useeffect，而重新渲染，set的值不一样，又会重新set，导致无限循环
-    // console.log("setVisibleData");
-    setVisibleData([2, 1, 8, 3, 6, 2, 3, 2, 0]);
-  };
-
-  const changePXAndPY = () => {
-    const tempPX = pX;
-    // console.log("tempPX", tempPX);
-    const tempPY = pY;
-    for (let i = 0; i < 9; i++) {
-      tempPX.splice(i, 1, parseInt(92 * xCoordParm * i * 100) / 100);
-      tempPY.splice(i, 1, (98 + rowHeight * visibleData[i]) * -1);
-    }
-    setPX(tempPX);
-    setPY(tempPY);
-  };
+    S ${pX[7] + 50} ${pY[8]}, ${pX[8]} ${pY[8]}`;
+  }, [pX, pY]);
 
   const renderPoints = () => {
     return points.map((item) => {
@@ -178,14 +142,13 @@ export default function TodoChart() {
     return date.map((item, index) => {
       return (
         <p className={styles.exactDate} key={index}>
-          {item.getDate()}/{item.getMonth() + 1}
+          {new Date(item).getDate()}/{new Date(item).getMonth() + 1}
         </p>
       );
     });
   };
 
   const renderHoverBox = () => {
-    // console.log("hoverBox", hoverBox, hoverBox[0]);
     return hoverBox.map((item) => {
       return (
         <div
@@ -197,8 +160,6 @@ export default function TodoChart() {
           onMouseLeave={() => {
             setVisiblePoint(0);
           }}
-          // @mouseover="setVisible(li.id)"
-          // @mouseleave="clearVisible()"
         ></div>
       );
     });

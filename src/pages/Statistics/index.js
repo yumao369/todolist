@@ -35,7 +35,11 @@ export default function Statis({ todoList }) {
       <div className={styles.head}>
         <h2 className={styles.headText}>数据统计（前七日）</h2>
       </div>
-      <TodoChart></TodoChart>
+      <TodoChart
+        date={date}
+        todoList={todoList}
+        isSample={isSample}
+      ></TodoChart>
       <AnalysisModel
         date={date}
         todoList={todoList}
