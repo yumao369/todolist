@@ -11,15 +11,18 @@ import logo from "../../assets/png/logo.png";
 import clock from "../../assets/svg/icon-clock.svg";
 import statistics from "../../assets/svg/icon-statistics.svg";
 import setting from "../../assets/svg/icon-setting.svg";
+import about from "../../assets/svg/icon-about.svg";
 import myTodo from "../../container/todoContainer";
 import MyStatis from "../../container/statisContainer";
 import Setting from "../Setting";
 import MySetting from "../../container/settingContainer";
+import About from "../About";
 
 const menuData = [
   { svgId: "#icon-clock", menuName: "待办事项", path: "/home" },
   { svgId: "#icon-statistics", menuName: "统计", path: "/home/statis" },
   { svgId: "#icon-setting", menuName: "设置", path: "/home/setting" },
+  { svgId: "#icon-about", menuName: "关于", path: "/home/about" },
 ];
 
 const skinColors = {
@@ -149,6 +152,7 @@ export default function Home({ skinType }) {
         <Route path="/home/statis" component={MyStatis}></Route>
         {/* <Route path="/home/setting" component={Setting}></Route> */}
         <Route path="/home/setting" component={MySetting}></Route>
+        <Route path="/home/about" component={About}></Route>
         {/* </Router> */}
       </div>
     </div>
