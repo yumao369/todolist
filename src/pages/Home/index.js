@@ -138,8 +138,6 @@ export default function Home({ skinType }) {
           <p className={styles.userName}>User Name</p>
         </div>
         {/**button */}
-        {/* <Menu imgURL={clock}>待办事项</Menu>
-        <Menu imgURL={statistics}>统计</Menu> */}
         <>{renderMenu()}</>
       </div>
       {/* 右边主题内容 */}

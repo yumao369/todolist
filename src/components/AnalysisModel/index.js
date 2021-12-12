@@ -11,13 +11,6 @@ const path = [
   "M 133 88 L 76 177 L 190 177 Z",
   "M 133 110 L 95 166 L 171 166 Z",
   "M 133 132 L 114 155 L 152 155 Z",
-  // "M 133 -22 L 0 210 L 265 210 Z",
-  // "M 133 0 L 19 199 L 246 199 Z",
-  // "M 133 22 L 38 188 L 227 188 Z",
-  // "M 133 44 L 57 177 L 209 177 Z",
-  // "M 133 66 L 76 166 L 190 166 Z",
-  // "M 133 88 L 95 155 L 171 155 Z",
-  // "M 133 110 L 114 144 L 152 144 Z",
 ];
 
 //每个path的转折点的坐标
@@ -26,22 +19,9 @@ const bottomLeftX = ["133", "114", "95", "76", "57", "38", "19", "0"];
 const bottomRigthX = ["133", "152", "171", "190", "209", "227", "246", "265"];
 const bottomY = ["144", "155", "166", "177", "188", "199", "210", "221"];
 
-// const today = new Date();
-
-// //前七日
-// const date = [
-//   new Date(today.getTime() - 168 * 60 * 60 * 1000),
-//   new Date(today.getTime() - 144 * 60 * 60 * 1000),
-//   new Date(today.getTime() - 120 * 60 * 60 * 1000),
-//   new Date(today.getTime() - 96 * 60 * 60 * 1000),
-//   new Date(today.getTime() - 72 * 60 * 60 * 1000),
-//   new Date(today.getTime() - 48 * 60 * 60 * 1000),
-//   new Date(today.getTime() - 24 * 60 * 60 * 1000),
-// ];
-
 export default function AnalysisModel({ todoList, date, isSample }) {
-  // console.log("todolist", todoList);
-  // const [isSampleData, setIsSampleData] = useState(true);
+  //这个组件目前有问题，这些值都可以通过传入的props计算得到，不应该设置成state
+  //否则导致过多的重复渲染
   const [ratio, setRatio] = useState([]);
   const [specialPath, setSpecialPath] = useState();
   //坐标点
@@ -62,12 +42,8 @@ export default function AnalysisModel({ todoList, date, isSample }) {
   const [text, setText] = useState("");
 
   useDeepCompareEffect(() => {
-    // changeIsSampleData();
     changeRatio();
 
-    // console.log("ratio", ratio);
-    // console.log("level", level1, level2, level3);
-    // console.log(visibleL3Y, visibleL2X, visibleL2Y, visibleL1X, visibleL1Y);
     changeLevel();
     changeLevelMax();
     changePoint();
@@ -75,7 +51,6 @@ export default function AnalysisModel({ todoList, date, isSample }) {
     changeLevelPercentage();
     changeText();
   }, [
-    // isSampleData,
     ratio,
     level3,
     level2,

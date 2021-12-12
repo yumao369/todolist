@@ -11,8 +11,6 @@ export const deleteTodo = "deleteTodo";
 export const editId = "editId";
 export const complete = "complete";
 export const changeSkin = "changeSkin";
-let defaultCategory = { border: "orangeBorder", inner: "orangeClass" };
-let defaultDeadline = null;
 
 export function setNewTodoAction() {
   return {

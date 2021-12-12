@@ -12,12 +12,6 @@ import MyTodoList from "../../container/todoListContainer";
 
 import styles from "./index.module.css";
 
-//这个组件应该以日期作为状态，日期变更则更新全组件
-
-//问题1：父组件的任何一个子组件参数改变都会导致整个重新渲染，使得为发生改变的组件也重新喧嚷
-//解决方法：用usememo和usecallback，前者返回缓存的变量，后者返回缓存的函数
-//更好的方法：用redux将todo变成无状态组件，这样子组件的更新就不会影响到父组件
-
 export default function Todo({
   text,
   selectDate,
@@ -51,27 +45,6 @@ export default function Todo({
     } else {
       return <NoTodoList></NoTodoList>;
     }
-    // if (todoList.length) {
-    //   return todoList
-    //     .filter((item) => {
-    //       return item.date === selectDate;
-    //     })
-    //     .map((item, index) => {
-    //       return (
-    //         <MyTodoList
-    //           key={index}
-    //           id={item.id}
-    //           content={item.content}
-    //           isCompleted={item.isComplete}
-    //           category={item.category}
-    //           deadline={item.deadline}
-    //         ></MyTodoList>
-    //       );
-    //     });
-    // } else {
-    //   console.log("NOTODO");
-    //   return <NoTodoList></NoTodoList>;
-    // }
   };
 
   const renderNewTodo = () => {
@@ -90,10 +63,7 @@ export default function Todo({
           </button>
         </div>
         <MyCalendar />
-        <div className={styles.todoList}>
-          {/* <NoTodoList /> */}
-          {renderTodoList()}
-        </div>
+        <div className={styles.todoList}>{renderTodoList()}</div>
       </div>
 
       <div className={styles.todoRight}>
@@ -105,10 +75,7 @@ export default function Todo({
         </div>
       </div>
 
-      <div>
-        {/* <NewTodo></NewTodo> */}
-        {renderNewTodo()}
-      </div>
+      <div>{renderNewTodo()}</div>
     </div>
   );
 }

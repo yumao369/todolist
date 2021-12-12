@@ -19,7 +19,6 @@ export default function TodoList({
   onClickDeleteTodo,
   onClickComplete,
 }) {
-  console.log("category", category);
   const [mouseOn, setMouseOn] = useState(false);
 
   const handleMouseEnter = () => {
@@ -37,8 +36,6 @@ export default function TodoList({
   };
 
   const handleDeleteClick = () => {
-    console.log(id);
-    console.log("a");
     onClickDeleteTodo(id);
   };
 

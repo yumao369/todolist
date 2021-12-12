@@ -3,6 +3,7 @@ import { useState } from "react/cjs/react.development";
 import styles from "./index.module.css";
 
 export default function Status({ selectDate, todoList }) {
+  //以下这些值都可以根据props计算得出，所以不应该作为state
   const todayTodo = todoList.filter((item) => item.date === selectDate);
   const CompletedTodayTodo = todayTodo.filter(
     (item) => item.iscompleted === true
